@@ -63,7 +63,7 @@ const buildResultMessage = (oldCoverage, newCoverage, detailedDiff = null) => {
 
     if (newCoverage.coverage < oldCoverage.coverage) {
         // Check if failure is wanted
-        if (core.getInput('fail-on-degradation') !== 'false') {
+        if (core.getInput('fail-on-degradation') === 'true') {
             core.setFailed('Code coverage has been degraded');
         }
 
