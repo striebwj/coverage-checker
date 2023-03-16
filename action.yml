@@ -23,6 +23,10 @@ inputs:
     description: 'Whether we want to calculate the average coverage'
     required: false
     default: 'false'
+  pass-on-degradation:
+    description: 'Whether we want to pass the workflow if the coverage is degraded'
+    required: false
+    default: 'false'
 runs:
   using: 'node16'
   main: 'dist/index.js'
