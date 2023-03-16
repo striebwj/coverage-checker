@@ -62,7 +62,10 @@ const buildResultMessage = (oldCoverage, newCoverage, detailedDiff = null) => {
     newCoverage.coverage = Math.round(newCoverage.coverage);
 
     if (newCoverage.coverage < oldCoverage.coverage) {
-        core.setFailed('Code coverage has been degraded');
+        // Check if failure is wanted
+        if (core.getInput('fail-on-degradation') !== 'false') {
+            core.setFailed('Code coverage has been degraded');
+        }
 
         return buildFailureMessage(oldCoverage, newCoverage, detailedDiff);
     }
