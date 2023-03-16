@@ -57,6 +57,10 @@ const buildSuccessMessage = (oldCoverage, newCoverage, detailedDiff) => {
 };
 
 const buildResultMessage = (oldCoverage, newCoverage, detailedDiff = null) => {
+    // Round coverage to 0 decimal places to avoid false negatives
+    oldCoverage.coverage = Math.round(oldCoverage.coverage);
+    newCoverage.coverage = Math.round(newCoverage.coverage);
+
     if (newCoverage.coverage < oldCoverage.coverage) {
         core.setFailed('Code coverage has been degraded');
 
