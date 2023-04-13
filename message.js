@@ -57,13 +57,9 @@ const buildSuccessMessage = (oldCoverage, newCoverage, detailedDiff) => {
 };
 
 const buildResultMessage = (oldCoverage, newCoverage, detailedDiff = null) => {
-    // Round coverage to 0 decimal places to avoid false negatives
-    oldCoverage.coverage = Math.round(oldCoverage.coverage);
-    newCoverage.coverage = Math.round(newCoverage.coverage);
-
     if (newCoverage.coverage < oldCoverage.coverage) {
         // Check if failure is wanted
-        if (core.getInput('pass-on-degradation') !== 'true') {
+        if (core.getInput('pass-on-degradation') === 'false') {
             core.setFailed('Code coverage has been degraded');
         }
 
